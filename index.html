@@ -4,454 +4,715 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yusra Khan — AI Automation Engineer</title>
-<meta name="description" content="AI Automation Engineer building production-grade automation systems across document processing, CRM workflows, voice agents and content pipelines.">
+<meta name="description" content="AI Automation Engineer building production automation systems across document processing, CRM workflows, voice agents and content pipelines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --teal:#15605A;
-    --teal-soft:#E3EEEC;
-    --ink:#1A1A1A;
-    --body:#333333;
-    --muted:#6B6B6B;
-    --rule:#D8DEDD;
-    --rule-soft:#E7EBEA;
-    --bg:#FFFFFF;
-    --box:#F1F6F5;
-    --sans: Helvetica, "Helvetica Neue", Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-  @media (prefers-reduced-motion: reduce){
-    *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
-  }
+:root{
+  --bg:#0a0a0f;
+  --bg-elevated:#12121a;
+  --bg-card:#14141d;
+  --border:#232331;
+  --border-strong:#33334a;
+  --text:#ecedf5;
+  --text-muted:#9b9cb4;
+  --text-faint:#6d6e85;
+  --primary:#8b5cf6;
+  --secondary:#6366f1;
+  --accent:#22d3ee;
+  --highlight:#ec4899;
+  --radius:.875rem;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
 
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0; background:var(--bg); color:var(--body);
-    font-family:var(--sans); font-size:15.5px; line-height:1.62;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:var(--teal)}
-  a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px}
-  .skip{position:absolute;left:-9999px}
-  .skip:focus{left:12px;top:12px;background:var(--box);color:var(--ink);padding:10px 14px;z-index:99;border:1px solid var(--rule)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:6rem;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;
+  min-height:100%;display:flex;flex-direction:column;
+}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+::selection{background:color-mix(in oklab, var(--primary) 40%, transparent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 
-  .wrap{max-width:920px;margin:0 auto;padding:0 28px}
+/* ---------- ambient background ---------- */
+.ambient{z-index:-1;pointer-events:none;position:fixed;inset:0;overflow:hidden}
+.ambient::before,.ambient::after{
+  content:"";position:absolute;width:46rem;height:46rem;
+  filter:blur(120px);opacity:.28;border-radius:9999px;
+}
+.ambient::before{
+  background:radial-gradient(circle, var(--primary), transparent 65%);
+  top:-14rem;left:-10rem;animation:drift-a 22s ease-in-out infinite alternate;
+}
+.ambient::after{
+  background:radial-gradient(circle, var(--accent), transparent 65%);
+  opacity:.18;top:12rem;right:-14rem;animation:drift-b 26s ease-in-out infinite alternate;
+}
+@keyframes drift-a{0%{transform:translate(0) scale(1)}to{transform:translate(6rem,4rem) scale(1.12)}}
+@keyframes drift-b{0%{transform:translate(0) scale(1.05)}to{transform:translate(-5rem,6rem) scale(.95)}}
 
-  /* ---------------- sticky nav ---------------- */
-  .topnav{
-    position:sticky; top:0; z-index:40;
-    background:rgba(255,255,255,.92);
-    backdrop-filter:saturate(150%) blur(10px);
-    -webkit-backdrop-filter:saturate(150%) blur(10px);
-    border-bottom:1px solid var(--rule-soft);
-  }
-  .navinner{display:flex;align-items:center;gap:22px;height:56px}
-  .navname{
-    font-size:12px;font-weight:700;color:var(--teal);white-space:nowrap;
-    letter-spacing:.14em;text-transform:uppercase;
-  }
-  .topnav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
-  .topnav ul::-webkit-scrollbar{display:none}
-  .topnav a{
-    display:block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
-    text-decoration:none;color:var(--muted);white-space:nowrap;
-    padding:8px 14px;border:1px solid transparent;border-radius:3px;
-    transition:color .16s ease,border-color .16s ease,background .16s ease,transform .16s ease;
-  }
-  .topnav a:hover{color:var(--teal);border-color:var(--rule);background:var(--box);transform:translateY(-1px)}
-  .topnav a.nav-cta{color:var(--teal);background:var(--teal-soft);border-color:var(--teal-soft)}
-  .topnav a.nav-cta:hover{border-color:var(--teal)}
+.grid-veil{
+  z-index:-1;pointer-events:none;position:fixed;inset:0;
+  background-image:linear-gradient(90deg,#ffffff09 1px,#0000 1px),linear-gradient(#ffffff09 1px,#0000 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(90% 60% at 50% 0,#000 20%,#0000 78%);
+  mask-image:radial-gradient(90% 60% at 50% 0,#000 20%,#0000 78%);
+}
 
-  /* ---------------- header ---------------- */
-  header{padding:74px 0 42px}
-  h1{
-    font-size:clamp(34px,6vw,50px); line-height:1.04; letter-spacing:-.015em;
-    margin:0 0 10px; color:var(--ink); font-weight:700; text-wrap:balance;
-  }
-  .role{
-    font-size:13px; font-weight:700; color:var(--teal); margin:0 0 24px;
-    letter-spacing:.22em; text-transform:uppercase;
-  }
-  .lede{font-size:16px; line-height:1.68; max-width:68ch; margin:0 0 26px; color:var(--body)}
-  .contact{display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:0; list-style:none; font-size:12.5px}
-  .contact a{
-    display:block; text-decoration:none; color:var(--body);
-    padding:8px 15px; background:var(--box); border-left:2.4px solid var(--teal);
-    transition:color .16s ease, background .16s ease, transform .16s ease;
-  }
-  .contact a:hover{color:var(--teal); background:var(--teal-soft); transform:translateY(-1px)}
+/* ---------- layout ---------- */
+.wrap{max-width:72rem;margin-inline:auto;padding-inline:1.25rem}
+@media (min-width:40rem){.wrap{padding-inline:2rem}}
+section{scroll-margin-top:6rem;padding-block:6rem}
+@media (min-width:40rem){section{padding-block:8rem}}
+.ruled{border-top:1px solid var(--border)}
+main{flex:1}
 
-  /* ---------------- sections ---------------- */
-  section{padding:46px 0; scroll-margin-top:72px}
-  section+section{border-top:1px solid var(--rule-soft)}
-  .label{
-    font-size:12px; font-weight:700; color:var(--teal); margin:0 0 8px;
-    letter-spacing:.26em; word-spacing:.55em; text-transform:uppercase;
-  }
-  .label-rule{height:1px;background:var(--rule);margin:0 0 28px}
-  h2{font-size:17.5px;line-height:1.3;margin:0 0 4px;color:var(--ink);font-weight:700;letter-spacing:-.005em}
-  h3{font-size:15.5px;line-height:1.35;margin:0;color:var(--ink);font-weight:700}
+/* ---------- nav ---------- */
+.site-header{
+  position:fixed;inset-inline:0;top:0;z-index:50;
+  border-bottom:1px solid transparent;transition:background .3s,border-color .3s,backdrop-filter .3s;
+}
+.site-header.stuck{
+  background:color-mix(in oklab, var(--bg) 75%, transparent);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  border-bottom-color:var(--border);
+}
+.nav{display:flex;height:4rem;align-items:center;justify-content:space-between;max-width:72rem;margin-inline:auto;padding-inline:1.25rem}
+@media (min-width:40rem){.nav{padding-inline:2rem}}
+.brand{font-family:var(--mono);font-size:.875rem;font-weight:500;letter-spacing:-.025em;transition:color .15s}
+.brand span{color:var(--primary)}
+.brand:hover{color:var(--accent)}
+.nav-links{display:none;align-items:center;gap:.25rem}
+@media (min-width:48rem){.nav-links{display:flex}}
+.nav-links a{border-radius:.5rem;padding:.5rem .75rem;font-size:.875rem;color:var(--text-muted);transition:color .15s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  margin-left:.75rem;border:1px solid var(--border-strong);background:var(--bg-elevated);
+  border-radius:.5rem;padding:.5rem 1rem !important;font-size:.875rem;font-weight:500;
+  color:var(--text) !important;transition:border-color .15s,color .15s;
+}
+.nav-cta:hover{border-color:var(--primary);color:var(--accent) !important}
+.menu-btn{
+  display:flex;height:2.75rem;width:2.75rem;align-items:center;justify-content:center;
+  border:0;background:none;border-radius:.5rem;color:var(--text-muted);cursor:pointer;transition:color .15s;
+}
+.menu-btn:hover{color:var(--text)}
+@media (min-width:48rem){.menu-btn{display:none}}
+.menu-btn svg{height:1.25rem;width:1.25rem}
+#mobile-menu{
+  display:none;border-top:1px solid var(--border);
+  background:color-mix(in oklab, var(--bg) 95%, transparent);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);padding:.5rem 1.25rem 1rem;
+}
+#mobile-menu.open{display:block}
+@media (min-width:48rem){#mobile-menu.open{display:none}}
+#mobile-menu a{display:block;border-radius:.5rem;padding:.75rem .25rem;font-size:.9375rem;color:var(--text-muted)}
+#mobile-menu a:hover{color:var(--text)}
 
-  /* ---------------- focus tags ---------------- */
-  .tags{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
-  .tags li{
-    font-size:12.5px; padding:7px 13px; color:var(--body);
-    background:var(--box); border-left:2.4px solid var(--teal);
-  }
+/* ---------- type ---------- */
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:2.25rem;line-height:1.08;font-weight:600;letter-spacing:-.025em;text-wrap:balance;max-width:56rem}
+@media (min-width:40rem){h1{font-size:3.75rem}}
+@media (min-width:64rem){h1{font-size:4.5rem}}
+h2{margin-top:.75rem;font-size:1.875rem;line-height:1.15;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
+@media (min-width:40rem){h2{font-size:2.25rem}}
+h3{font-weight:600;letter-spacing:-.025em;color:var(--text)}
+.text-gradient{
+  background:linear-gradient(100deg, var(--text) 10%, var(--primary) 55%, var(--accent) 95%);
+  color:transparent;-webkit-background-clip:text;background-clip:text;
+}
+.muted{color:var(--text-muted)}
+.faint{color:var(--text-faint)}
+.section-head{max-width:42rem}
+.section-head p.lead{margin-top:1rem;font-size:1rem;line-height:1.625;color:var(--text-muted);text-wrap:pretty}
 
-  /* ---------------- experience ---------------- */
-  .role-block{
-    background:var(--box); border-left:2.4px solid var(--teal);
-    padding:22px 24px; margin-bottom:14px;
-  }
-  .role-block:last-child{margin-bottom:0}
-  .org{font-size:12px;color:var(--teal);margin:0 0 12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
-  .role-block > p{margin:0;font-size:14.6px;line-height:1.62}
-  ul.points{margin:12px 0 0;padding-left:18px}
-  ul.points li{margin:0 0 7px;font-size:14.4px;line-height:1.6;color:var(--body)}
-  ul.points li::marker{color:var(--teal)}
+/* ---------- hero ---------- */
+#top{padding-top:9rem;padding-bottom:5rem;position:relative}
+@media (min-width:40rem){#top{padding-top:11rem;padding-bottom:7rem}}
+.hero-lede{margin-top:1.75rem;max-width:36rem;font-size:1.125rem;line-height:1.625;color:var(--text-muted);text-wrap:pretty}
+.btn-primary{
+  display:inline-flex;min-height:2.75rem;align-items:center;gap:.5rem;
+  border-radius:.75rem;background:var(--primary);padding:.75rem 1.25rem;
+  font-size:.875rem;font-weight:500;color:#fff;transition:filter .15s,box-shadow .15s;
+}
+.btn-primary:hover{filter:brightness(1.1);box-shadow:0 0 32px -6px var(--primary)}
+.btn-primary svg{height:1rem;width:1rem;transition:translate .15s}
+.btn-primary:hover svg{translate:.125rem -.125rem}
+.stats{
+  margin-top:5rem;display:grid;grid-template-columns:1fr;gap:1px;
+  overflow:hidden;border-radius:1rem;border:1px solid var(--border);background:var(--border);
+}
+@media (min-width:40rem){.stats{grid-template-columns:repeat(3,1fr)}}
+.stats > div{display:flex;flex-direction:column-reverse;gap:.25rem;background:var(--bg);padding:1.75rem 1.5rem}
+.stats dt{font-size:.875rem;color:var(--text-faint)}
+.stats dd{font-family:var(--mono);font-size:1.875rem;font-weight:600;letter-spacing:-.025em;color:var(--text)}
 
-  /* ---------------- projects ---------------- */
-  .group{margin:0 0 34px}
-  .group:last-child{margin-bottom:0}
-  .group-name{
-    font-size:11.5px; font-weight:700; color:var(--teal); margin:0 0 16px;
-    letter-spacing:.18em; word-spacing:.4em; text-transform:uppercase;
-    padding-bottom:8px; border-bottom:1px solid var(--rule);
-  }
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;perspective:1100px}
+/* ---------- cards ---------- */
+.card{
+  position:relative;background:linear-gradient(180deg, var(--bg-card), color-mix(in oklab, var(--bg-card) 70%, #000));
+  border:1px solid var(--border);border-radius:var(--radius);
+  transition:border-color .22s,transform .22s,box-shadow .22s;
+}
+.card:hover{
+  border-color:var(--border-strong);
+  box-shadow:0 0 0 1px color-mix(in oklab, var(--primary) 22%, transparent),
+             0 18px 46px -18px color-mix(in oklab, var(--primary) 45%, transparent);
+  transform:translateY(-3px);
+}
+.work-grid{margin-top:3.5rem;display:grid;gap:1.25rem}
+@media (min-width:64rem){.work-grid{grid-template-columns:repeat(2,1fr)}}
+.work-grid > *{display:flex}
+.proj{flex:1;display:flex;flex-direction:column;padding:1.5rem}
+@media (min-width:40rem){.proj{padding:1.75rem}}
+.proj-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.proj-head h3{font-size:1.25rem}
+@media (min-width:40rem){.proj-head h3{font-size:1.5rem}}
+.proj-tag{margin-top:.25rem;flex-shrink:0;font-family:var(--mono);font-size:.75rem;color:var(--text-faint)}
+.proj p{margin-top:.75rem;font-size:.875rem;line-height:1.625}
+.proj .p1{color:var(--text-muted)}
+.proj .p2{color:var(--text-faint)}
+.figures{margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:1.25rem}
+.figures b{display:block;font-family:var(--mono);font-size:1.125rem;font-weight:600;color:var(--accent)}
+.figures span{display:block;font-size:.75rem;color:var(--text-faint)}
+.pills{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.pills span{
+  border-radius:.375rem;border:1px solid var(--border);background:var(--bg-elevated);
+  padding:.25rem .625rem;font-family:var(--mono);font-size:.75rem;color:var(--text-muted);
+}
 
-  .card{
-    position:relative; overflow:hidden;
-    background:var(--box); border-left:2.4px solid var(--teal);
-    padding:20px 22px; display:flex; flex-direction:column;
-    transform-style:preserve-3d; will-change:transform;
-    transition:transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease;
-  }
-  .card::before{
-    content:""; position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),
-               rgba(21,96,90,.10), transparent 62%);
-    opacity:0; transition:opacity .25s ease;
-  }
-  .card:hover{box-shadow:0 16px 32px -18px rgba(21,96,90,.42), 0 3px 10px -6px rgba(0,0,0,.14)}
-  .card:hover::before{opacity:1}
-  .card > *{position:relative}
-  @media (prefers-reduced-motion: reduce){ .card::before{display:none} }
+/* ---------- about ---------- */
+.about-grid{display:grid;gap:3rem}
+@media (min-width:64rem){.about-grid{grid-template-columns:1fr 1.4fr;gap:5rem}}
+.about-body > * + *{margin-top:1.5rem}
+.about-body p{font-size:1.125rem;line-height:1.625;color:var(--text-muted);text-wrap:pretty}
 
-  .card p{margin:0;font-size:14.2px;line-height:1.6;color:var(--body)}
-  .stack{
-    margin:14px 0 0 !important; padding-top:11px; border-top:1px solid var(--rule);
-    font-size:11.8px !important; color:var(--muted) !important; line-height:1.65 !important;
-  }
-  .stack b{color:var(--teal);font-weight:700;letter-spacing:.06em}
-  .note{color:var(--muted);font-weight:400}
+/* ---------- toolkit ---------- */
+.kit-grid{margin-top:3.5rem;display:grid;gap:1.25rem}
+@media (min-width:40rem){.kit-grid{grid-template-columns:repeat(2,1fr)}}
+.kit-grid > *{display:flex}
+.kit{flex:1;display:flex;flex-direction:column;padding:1.5rem}
+.kit h3{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);font-weight:500}
+.kit ul{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.kit li{
+  border-radius:.5rem;border:1px solid var(--border);background:var(--bg-elevated);
+  padding:.375rem .75rem;font-size:.875rem;color:var(--text-muted);
+  transition:border-color .15s,color .15s;
+}
+.kit li:hover{border-color:var(--border-strong);color:var(--text)}
 
-  /* ---------------- skills ---------------- */
-  .skills{display:grid;grid-template-columns:186px 1fr;gap:0 24px;align-items:baseline;margin:0}
-  .skills dt{
-    font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);
-    font-weight:700;padding:11px 0;border-bottom:1px solid var(--rule-soft);
-  }
-  .skills dd{margin:0;padding:11px 0;font-size:14.4px;border-bottom:1px solid var(--rule-soft)}
-  .skills dt:last-of-type,.skills dd:last-of-type{border-bottom:0}
+/* ---------- timeline ---------- */
+.timeline{margin-top:3.5rem}
+.timeline li{position:relative;border-left:1px solid var(--border);padding-left:2rem;padding-bottom:3rem}
+.timeline li:last-child{padding-bottom:0}
+.dot{
+  position:absolute;top:.375rem;left:-5px;height:.625rem;width:.625rem;
+  border-radius:9999px;background:var(--primary);box-shadow:0 0 14px 2px var(--primary);
+}
+.timeline h3{margin-top:.5rem;font-size:1.25rem}
+.timeline .org{margin-top:.25rem;font-size:.875rem;color:var(--accent)}
+.timeline .kicker{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+.timeline .points{margin-top:1rem}
+.timeline .points li{
+  position:relative;border-left:0;padding-left:1.25rem;padding-bottom:0;
+  font-size:.875rem;line-height:1.625;color:var(--text-muted);
+}
+.timeline .points li + li{margin-top:.5rem}
+.timeline .points li::before{
+  content:"";position:absolute;top:.625rem;left:0;height:.25rem;width:.25rem;
+  border-radius:9999px;background:var(--border-strong);
+}
 
-  /* ---------------- education ---------------- */
-  .edu{display:grid;gap:12px}
-  .edu-item{
-    display:grid;grid-template-columns:1fr auto;gap:16px;align-items:baseline;
-    background:var(--box);border-left:2.4px solid var(--teal);padding:18px 22px;
-  }
-  .edu-item p{margin:3px 0 0;font-size:13.8px;color:var(--muted)}
-  .edu-item span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:700;text-align:right}
+/* ---------- education ---------- */
+.edu-grid{margin-top:3.5rem;display:grid;gap:1.25rem}
+@media (min-width:40rem){.edu-grid{grid-template-columns:repeat(3,1fr)}}
+.edu-grid > *{display:flex}
+.edu{flex:1;display:flex;flex-direction:column;padding:1.5rem}
+.edu .kicker{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+.edu h3{margin-top:.75rem;font-size:1.125rem}
+.edu p{margin-top:.5rem;font-size:.875rem;line-height:1.6;color:var(--text-muted)}
 
-  footer{padding:38px 0 64px;border-top:1px solid var(--rule-soft);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+/* ---------- contact ---------- */
+.contact-panel{
+  position:relative;overflow:hidden;border-radius:1.5rem;border:1px solid var(--border);
+  background:var(--bg-elevated);padding:4rem 1.5rem;text-align:center;
+}
+@media (min-width:40rem){.contact-panel{padding:6rem 3rem}}
+.contact-glow{
+  pointer-events:none;position:absolute;top:-8rem;left:50%;translate:-50% 0;
+  height:18rem;width:36rem;border-radius:9999px;background:var(--primary);
+  opacity:.2;filter:blur(110px);
+}
+.contact-inner{position:relative}
+.contact-inner h2{margin-inline:auto;margin-top:1rem;max-width:42rem}
+@media (min-width:40rem){.contact-inner h2{font-size:3rem}}
+.contact-inner .lead{margin-inline:auto;margin-top:1.25rem;max-width:32rem;font-size:1rem;line-height:1.625;color:var(--text-muted);text-wrap:pretty}
+.contact-actions{margin-top:2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem}
+@media (min-width:40rem){.contact-actions{flex-direction:row}}
+.contact-actions .btn-primary{width:100%;justify-content:center;padding:.875rem 1.5rem}
+@media (min-width:40rem){.contact-actions .btn-primary{width:auto}}
+.icon-links{display:flex;align-items:center;gap:.25rem}
+.icon-links a{
+  display:flex;height:2.75rem;width:2.75rem;align-items:center;justify-content:center;
+  border-radius:.75rem;border:1px solid var(--border);color:var(--text-muted);
+  transition:border-color .15s,color .15s;
+}
+.icon-links a:hover{border-color:var(--primary);color:var(--accent)}
+.icon-links svg{height:1.25rem;width:1.25rem}
 
-  @media (max-width:680px){
-    header{padding:48px 0 32px}
-    section{padding:36px 0}
-    .navname{display:none}
-    .navinner{gap:0}
-    .skills{grid-template-columns:1fr;gap:0}
-    .skills dt{padding-bottom:2px;border-bottom:0}
-    .edu-item{grid-template-columns:1fr}
-    .edu-item span{text-align:left}
-  }
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--border);padding-block:2.5rem}
+.foot{
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:1rem;
+  max-width:72rem;margin-inline:auto;padding-inline:1.25rem;font-size:.875rem;color:var(--text-faint);
+}
+@media (min-width:40rem){.foot{flex-direction:row;padding-inline:2rem}}
+.foot .built{font-family:var(--mono);font-size:.75rem}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .52s cubic-bezier(.16,1,.3,1),transform .52s cubic-bezier(.16,1,.3,1)}
+.reveal.is-visible{opacity:1;transform:none}
+
+.skip{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip:focus{
+  position:absolute;top:1rem;left:1rem;z-index:100;width:auto;height:auto;clip-path:none;
+  border-radius:.5rem;background:var(--primary);padding:.5rem 1rem;font-size:.875rem;color:#fff;
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .ambient::before,.ambient::after{animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .card:hover{transform:none}
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
 
-<nav class="topnav" aria-label="Sections">
-  <div class="wrap navinner">
-    <span class="navname">Yusra Khan</span>
-    <ul>
-      <li><a href="#work">Focus</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Work</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a class="nav-cta" href="mailto:iyusrak@gmail.com">Get in touch</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="ambient" aria-hidden="true"></div>
+<div class="grid-veil" aria-hidden="true"></div>
 
-<header>
-  <div class="wrap">
-    <h1>Yusra Khan</h1>
-    <p class="role">AI Automation Engineer</p>
-    <p class="lede">
-      I design and deploy production-grade automation systems — document processing, CRM
-      workflows, voice agents and content pipelines. Most of my work involves translating
-      loosely defined business problems into automation architecture that runs reliably
-      without supervision, built on n8n, LLM APIs and cloud integrations.
-    </p>
-    <ul class="contact">
-      <li><a href="mailto:iyusrak@gmail.com">iyusrak@gmail.com</a></li>
-      <li><a href="https://www.linkedin.com/in/yusra-khan/" rel="noopener">LinkedIn</a></li>
-      <li><a href="https://github.com/iyusrakhan" rel="noopener">GitHub</a></li>
-    </ul>
+<a href="#work" class="skip">Skip to content</a>
+
+<header class="site-header" id="siteHeader">
+  <nav class="nav" aria-label="Main">
+    <a href="#top" class="brand"><span>/</span>Yusra</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+    <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </nav>
+  <div id="mobile-menu">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Get in touch</a>
   </div>
 </header>
 
-<main id="main">
+<main>
 
+<!-- ==================== HERO ==================== -->
+<section id="top">
+  <div class="wrap">
+    <div class="reveal">
+      <h1>
+        <span class="text-gradient">Yusra Khan</span>
+        <span class="muted" style="display:block">AI Automation Engineer</span>
+      </h1>
+    </div>
+    <div class="reveal" style="transition-delay:80ms">
+      <p class="hero-lede">I turn loosely defined business problems into automation architecture — document processing, CRM workflows, voice agents and content pipelines that run reliably without anyone watching them.</p>
+    </div>
+    <div class="reveal" style="transition-delay:160ms">
+      <div style="margin-top:2.5rem;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem">
+        <a href="#work" class="btn-primary">View my work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:240ms">
+      <dl class="stats">
+        <div><dt>Projects shipped end to end</dt><dd>13</dd></div>
+        <div><dt>Production systems in live use</dt><dd>5</dd></div>
+        <div><dt>Field-service CRMs integrated</dt><dd>2</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WORK ==================== -->
 <section id="work">
   <div class="wrap">
-    <p class="label">What I work on</p>
-    <div class="label-rule"></div>
-    <ul class="tags">
-      <li>AI automation engineering</li>
-      <li>n8n &amp; API integration</li>
-      <li>LLM integration</li>
-      <li>Voice AI agents</li>
-      <li>OCR &amp; document processing</li>
-      <li>Robotic process automation</li>
-      <li>Production-grade AI systems</li>
-      <li>Data validation &amp; quality control</li>
-      <li>Prompt engineering</li>
-      <li>Machine learning</li>
-      <li>End-to-end system architecture</li>
-      <li>Content generation automation</li>
-    </ul>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="wrap">
-    <p class="label">Experience</p>
-    <div class="label-rule"></div>
-
-    <div class="role-block">
-      <h2>AI Automation Engineer</h2>
-      <p class="org">Devinci Codes</p>
-      <p>Building integrations across n8n, third-party APIs, AI models and cloud platforms to
-         unify disconnected business systems, by mapping system dependencies and configuring
-         secure API connections.</p>
-      <ul class="points">
-        <li>Automated document processing, reporting, CRM workflows and operational pipelines,
-            improving data accuracy and standardising recurring processes.</li>
-        <li>Built production systems spanning OCR, scheduling, analytics and workflow automation
-            for live business operations, with testing protocols behind them.</li>
-        <li>Removed manual bottlenecks by integrating LLM-driven decision logic into client
-            processes.</li>
-      </ul>
+    <div class="reveal">
+      <div class="section-head">
+        <p class="eyebrow">Selected work</p>
+        <h2>Systems I built end to end</h2>
+        <p class="lead">From the API call that pulls the data to the moment a person stops doing the job by hand — including the parts that only break once they're running unattended.</p>
+      </div>
     </div>
 
-    <div class="role-block">
-      <h2>AI Automation Engineer</h2>
-      <p class="org">Zirium AI</p>
-      <p>Designing and maintaining workflow automations integrating third-party APIs, CRMs and
-         internal databases.</p>
-      <ul class="points">
-        <li>Built webhook-driven pipelines handling scheduling, lead capture and notification
-            delivery.</li>
-        <li>Reduced manual, repetitive processes to unattended scheduled jobs with error handling
-            and alerting.</li>
-        <li>Modelled structured data for analytical querying and connected it to Power BI and
-            Tableau reporting layers.</li>
-      </ul>
-    </div>
-  </div>
-</section>
+    <div class="work-grid">
 
-<section id="projects">
-  <div class="wrap">
-    <p class="label">Selected work</p>
-    <div class="label-rule"></div>
-
-    <div class="group">
-      <p class="group-name">Production automation platforms</p>
-      <div class="grid">
-        <article class="card">
+      <div class="reveal"><article class="card proj">
+        <div class="proj-head">
           <h3>Titan Daily Command Board</h3>
-          <p>A productised, multi-tenant SaaS dashboard for home-service consultants, replacing a
-             manual embed with automated pulls from the ServiceTitan CRM API. Surfaces MTD revenue,
-             call volume, close rates, sold hours and today's opportunities across business units in
-             real time, with DST-aware timezone correction, paginated calls across multiple reporting
-             endpoints, and encrypted per-tenant credential storage.</p>
-          <p class="stack"><b>Stack:</b> Next.js · TypeScript · Supabase · NextAuth · ServiceTitan API · Vercel · AES-256-GCM</p>
-        </article>
+          <span class="proj-tag">SaaS</span>
+        </div>
+        <p class="p1">A productised, multi-tenant SaaS dashboard for home-service consultants, replacing a manual embed with automated pulls from the ServiceTitan CRM API.</p>
+        <p class="p2">Surfaces MTD revenue, call volume, close rates, sold hours and today's opportunities across business units in real time — with DST-aware timezone correction, paginated calls across multiple reporting endpoints, and encrypted per-tenant credential storage.</p>
+        <div class="figures">
+          <div><b>multi</b><span>tenant</span></div>
+          <div><b>real time</b><span>CRM sync</span></div>
+        </div>
+        <div class="pills">
+          <span>Next.js</span><span>TypeScript</span><span>Supabase</span><span>NextAuth</span><span>ServiceTitan API</span><span>Vercel</span><span>AES-256-GCM</span>
+        </div>
+      </article></div>
 
-        <article class="card">
+      <div class="reveal" style="transition-delay:80ms"><article class="card proj">
+        <div class="proj-head">
           <h3>Invoice-to-PO Automation Platform</h3>
-          <p>A full-scale AI-powered invoice processing platform that converts vendor invoices into
-             purchase orders automatically, removing manual data entry from procurement. Integrated
-             with ServiceTitan and Jobber so processing stays in step with existing field-service
-             systems, with multi-vendor PDF parsing, validation and tax handling built in.</p>
-          <p class="stack"><b>Stack:</b> Node.js · Express · Supabase · Google Gemini API · n8n · PM2 · JavaScript</p>
-        </article>
+          <span class="proj-tag">Automation</span>
+        </div>
+        <p class="p1">A full-scale AI-powered invoice processing platform that converts vendor invoices into purchase orders automatically, taking manual data entry out of procurement.</p>
+        <p class="p2">Integrated with ServiceTitan and Jobber so processing stays in step with the field-service systems already in use, with multi-vendor PDF parsing, validation and tax handling built into the pipeline rather than bolted on after.</p>
+        <div class="figures">
+          <div><b>2</b><span>field-service CRMs</span></div>
+          <div><b>0</b><span>manual data entry</span></div>
+        </div>
+        <div class="pills">
+          <span>Node.js</span><span>Express</span><span>Supabase</span><span>Gemini API</span><span>n8n</span><span>PM2</span><span>JavaScript</span>
+        </div>
+      </article></div>
 
-        <article class="card">
+      <div class="reveal"><article class="card proj">
+        <div class="proj-head">
           <h3>AI Voice Scheduling Agent</h3>
-          <p>A voice agent wired into Google Calendar for conversational appointment scheduling.
-             Callers can create, reschedule, delete and check availability through natural speech,
-             with automation workflows keeping the calendar synchronised in real time.</p>
-          <p class="stack"><b>Stack:</b> Retell AI · n8n · Google Calendar API</p>
-        </article>
+          <span class="proj-tag">Voice AI</span>
+        </div>
+        <p class="p1">A voice agent wired into Google Calendar for conversational appointment scheduling, removing the back-and-forth of manual calendar coordination.</p>
+        <p class="p2">Callers create, reschedule, delete and check availability through natural speech, with automation workflows keeping the calendar synchronised in real time behind the conversation.</p>
+        <div class="figures">
+          <div><b>4</b><span>calendar actions by voice</span></div>
+          <div><b>live</b><span>conversation</span></div>
+        </div>
+        <div class="pills"><span>Retell AI</span><span>n8n</span><span>Google Calendar API</span></div>
+      </article></div>
 
-        <article class="card">
-          <h3>AI-Powered Blog Content Engine</h3>
-          <p>An SEO-focused content generation system that runs live web research and produces
-             long-form drafts automatically, publishing into WordPress through n8n. Delivered with
-             full architecture documentation mapping every integration touchpoint.</p>
-          <p class="stack"><b>Stack:</b> Hyperagent · Claude Opus · n8n · WordPress</p>
-        </article>
-
-        <article class="card">
+      <div class="reveal" style="transition-delay:80ms"><article class="card proj">
+        <div class="proj-head">
           <h3>Automated Daily Briefing Agent</h3>
-          <p>Consolidates scattered information into a single daily intelligence summary, pulling
-             from Gmail, Google Calendar and Outlook into one pipeline. Generates prioritised
-             overviews of emails, meetings and schedules, scheduled entirely through GitHub Actions.</p>
-          <p class="stack"><b>Stack:</b> Claude API · Gmail API · Google Calendar API · Outlook API · GitHub Actions</p>
-        </article>
-      </div>
-    </div>
+          <span class="proj-tag">Agent</span>
+        </div>
+        <p class="p1">Consolidates scattered information into a single daily intelligence summary, replacing the morning ritual of triaging three inboxes and two calendars by hand.</p>
+        <p class="p2">Pulls Gmail, Google Calendar and Outlook into one pipeline and generates a prioritised overview of emails, meetings and schedules — scheduled entirely through GitHub Actions, with no server to keep alive.</p>
+        <div class="figures">
+          <div><b>3</b><span>sources unified</span></div>
+          <div><b>daily</b><span>unattended run</span></div>
+        </div>
+        <div class="pills"><span>Claude API</span><span>Gmail API</span><span>Google Calendar API</span><span>Outlook API</span><span>GitHub Actions</span></div>
+      </article></div>
 
-    <div class="group">
-      <p class="group-name">Machine learning</p>
-      <div class="grid">
-        <article class="card">
-          <h3>Smart Malaria Detection <span class="note">— final year project</span></h3>
-          <p>Classifies parasitised against uninfected red blood cells to support faster diagnosis
-             in low-resource healthcare settings. Built a preprocessing pipeline covering colour
-             constancy correction, denoising, normalisation and augmentation, then trained and
-             evaluated ResNet50 and EfficientNetV2M with a lightweight deployment path.</p>
-          <p class="stack"><b>Stack:</b> Python · TensorFlow · ResNet50 · EfficientNetV2M · OpenCV</p>
-        </article>
+      <div class="reveal"><article class="card proj">
+        <div class="proj-head">
+          <h3>AI-Powered Blog Content Engine</h3>
+          <span class="proj-tag">Content</span>
+        </div>
+        <p class="p1">An SEO-focused content generation system that runs live web research and produces long-form drafts automatically, publishing straight into WordPress through n8n.</p>
+        <p class="p2">Delivered with full architecture documentation mapping every integration touchpoint, so the pipeline can be handed over and maintained by someone who did not build it.</p>
+        <div class="figures">
+          <div><b>live</b><span>web research per draft</span></div>
+          <div><b>auto</b><span>WordPress publish</span></div>
+        </div>
+        <div class="pills"><span>Hyperagent</span><span>Claude Opus</span><span>n8n</span><span>WordPress</span></div>
+      </article></div>
 
-        <article class="card">
+      <div class="reveal" style="transition-delay:80ms"><article class="card proj">
+        <div class="proj-head">
+          <h3>Smart Malaria Detection</h3>
+          <span class="proj-tag">Final year</span>
+        </div>
+        <p class="p1">A deep learning system that classifies parasitised against uninfected red blood cells, aimed at faster diagnosis in low-resource healthcare settings.</p>
+        <p class="p2">Built a preprocessing pipeline covering colour constancy correction, denoising, normalisation and augmentation, then trained and evaluated two CNN architectures against each other with a lightweight deployment path in mind.</p>
+        <div class="figures">
+          <div><b>2</b><span>CNN architectures compared</span></div>
+          <div><b>4-stage</b><span>preprocessing pipeline</span></div>
+        </div>
+        <div class="pills"><span>Python</span><span>TensorFlow</span><span>ResNet50</span><span>EfficientNetV2M</span><span>OpenCV</span></div>
+      </article></div>
+
+      <div class="reveal"><article class="card proj">
+        <div class="proj-head">
           <h3>Epileptic Seizure Detection</h3>
-          <p>EEG-based detection models for early identification of seizure events. Trained and
-             compared Random Forest, XGBoost and SVM classifiers on EEG signal data, with
-             preprocessing, feature extraction and SMOTE class balancing to correct for the heavy
-             imbalance in the dataset. Methodology documented in LaTeX for reproducibility.</p>
-          <p class="stack"><b>Stack:</b> Python · scikit-learn · XGBoost · SMOTE · LaTeX</p>
-        </article>
-      </div>
-    </div>
+          <span class="proj-tag">Machine learning</span>
+        </div>
+        <p class="p1">EEG-based detection models for early identification of seizure events, trained on raw signal data rather than pre-engineered features.</p>
+        <p class="p2">Compared Random Forest, XGBoost and SVM classifiers, with preprocessing, feature extraction and SMOTE class balancing to correct the heavy imbalance in the dataset. Methodology documented in LaTeX so the results are reproducible.</p>
+        <div class="figures">
+          <div><b>3</b><span>classifiers benchmarked</span></div>
+          <div><b>SMOTE</b><span>class rebalancing</span></div>
+        </div>
+        <div class="pills"><span>Python</span><span>scikit-learn</span><span>XGBoost</span><span>SMOTE</span><span>LaTeX</span></div>
+      </article></div>
 
-    <div class="group">
-      <p class="group-name">Workflow automation</p>
-      <div class="grid">
-        <article class="card">
+      <div class="reveal" style="transition-delay:80ms"><article class="card proj">
+        <div class="proj-head">
           <h3>MP3 to Structured Learning Documents</h3>
-          <p>Converts lecture audio recordings into structured, textbook-style Google Docs,
-             replacing manual note-taking. Architected across two layers — no-code automation for
-             orchestration, custom Python for processing.</p>
-          <p class="stack"><b>Stack:</b> n8n · Python · Google Colab · Google Docs API</p>
-        </article>
+          <span class="proj-tag">Automation</span>
+        </div>
+        <p class="p1">Converts lecture audio recordings into structured, textbook-style Google Docs, replacing manual note-taking entirely.</p>
+        <p class="p2">Architected across two layers — no-code automation handling orchestration and delivery, custom Python handling the transcription and restructuring work that the no-code layer could not do cleanly.</p>
+        <div class="figures">
+          <div><b>audio</b><span>to structured document</span></div>
+          <div><b>2</b><span>layer architecture</span></div>
+        </div>
+        <div class="pills"><span>n8n</span><span>Python</span><span>Google Colab</span><span>Google Docs API</span></div>
+      </article></div>
 
-        <article class="card">
+      <div class="reveal"><article class="card proj">
+        <div class="proj-head">
           <h3>AI Recipe–Tip Matching</h3>
-          <p>Ingests and parses recipe and cooking-tip datasets from Google Drive, then uses
-             embedding-based semantic similarity for context-aware matching, with custom scoring
-             and filtering logic to keep pairings relevant.</p>
-          <p class="stack"><b>Stack:</b> n8n · JavaScript · embeddings · Google Drive API</p>
-        </article>
+          <span class="proj-tag">Automation</span>
+        </div>
+        <p class="p1">Ingests and parses recipe and cooking-tip datasets from Google Drive, then pairs them using embedding-based semantic similarity rather than keyword matching.</p>
+        <p class="p2">Custom scoring and filtering logic keeps pairings relevant instead of merely similar, which is where naive similarity search usually falls down.</p>
+        <div class="figures">
+          <div><b>semantic</b><span>similarity matching</span></div>
+          <div><b>custom</b><span>scoring logic</span></div>
+        </div>
+        <div class="pills"><span>n8n</span><span>JavaScript</span><span>embeddings</span><span>Google Drive API</span></div>
+      </article></div>
 
-        <article class="card">
+      <div class="reveal" style="transition-delay:80ms"><article class="card proj">
+        <div class="proj-head">
           <h3>Social Media Carousel Generator</h3>
-          <p>Transforms raw content into Instagram-ready carousel posts. Handles cleaning,
-             restructuring, caption generation and scheduled publishing as sequential stages, so
-             the whole production cycle runs from raw input to published post.</p>
-          <p class="stack"><b>Stack:</b> n8n · LLM APIs · Instagram publishing</p>
-        </article>
+          <span class="proj-tag">Content</span>
+        </div>
+        <p class="p1">Transforms raw content into Instagram-ready carousel posts, compressing a manual production cycle into a single automated run.</p>
+        <p class="p2">Cleaning, restructuring, caption generation and scheduled publishing run as sequential stages, so the pipeline goes from raw input to published post without a handoff in the middle.</p>
+        <div class="figures">
+          <div><b>4</b><span>pipeline stages</span></div>
+          <div><b>scheduled</b><span>publishing</span></div>
+        </div>
+        <div class="pills"><span>n8n</span><span>LLM APIs</span><span>Instagram publishing</span></div>
+      </article></div>
 
-        <article class="card">
+      <div class="reveal"><article class="card proj">
+        <div class="proj-head">
           <h3>AI UGC Ad Video Generator</h3>
-          <p>Turns static product images into short-form UGC-style video advertisements through an
-             automated image-to-video pipeline, producing multiple variations per product for rapid
-             creative testing.</p>
-          <p class="stack"><b>Stack:</b> Sora-2 · n8n</p>
-        </article>
-      </div>
+          <span class="proj-tag">Content</span>
+        </div>
+        <p class="p1">Turns static product images into short-form UGC-style video advertisements through an automated image-to-video pipeline.</p>
+        <p class="p2">Produces multiple variations per product so creative testing can run at campaign scale instead of one asset at a time.</p>
+        <div class="figures">
+          <div><b>image</b><span>to video</span></div>
+          <div><b>many</b><span>variants per product</span></div>
+        </div>
+        <div class="pills"><span>Sora-2</span><span>n8n</span></div>
+      </article></div>
+
+      <div class="reveal" style="transition-delay:80ms"><article class="card proj">
+        <div class="proj-head">
+          <h3>Airbnb &amp; Netflix Analytics</h3>
+          <span class="proj-tag">Analytics</span>
+        </div>
+        <p class="p1">A Power BI dashboard surfacing Airbnb pricing trends, demand patterns and review insights for market analysis, built on structured underlying data models.</p>
+        <p class="p2">Alongside it, SQL-based exploratory analysis of Netflix datasets uncovering content and viewing trends across genres, actors, release years and countries.</p>
+        <div class="figures">
+          <div><b>2</b><span>analysis projects</span></div>
+          <div><b>4</b><span>dimensions analysed</span></div>
+        </div>
+        <div class="pills"><span>Power BI</span><span>SQL</span><span>data modelling</span></div>
+      </article></div>
+
     </div>
+  </div>
+</section>
 
-    <div class="group">
-      <p class="group-name">Data &amp; analytics</p>
-      <div class="grid">
-        <article class="card">
-          <h3>Airbnb Analytics Dashboard</h3>
-          <p>A Power BI dashboard surfacing pricing trends, demand patterns and review insights for
-             market analysis, built on structured underlying data models.</p>
-          <p class="stack"><b>Stack:</b> Power BI · data modelling</p>
-        </article>
-
-        <article class="card">
-          <h3>Netflix Data Analysis</h3>
-          <p>SQL-based exploratory analysis of Netflix datasets, uncovering content and viewing
-             trends across genres, actors, release years and countries.</p>
-          <p class="stack"><b>Stack:</b> SQL</p>
-        </article>
+<!-- ==================== ABOUT ==================== -->
+<section id="about" class="ruled">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-head">
+          <p class="eyebrow">About</p>
+          <h2>The short version</h2>
+        </div>
+      </div>
+      <div class="about-body">
+        <div class="reveal">
+          <p>I'm an AI automation engineer. My work sits where n8n, third-party APIs, AI models and cloud platforms meet — mapping how disconnected systems actually depend on each other, then wiring them together so the process runs without anyone supervising it.</p>
+        </div>
+        <div class="reveal" style="transition-delay:80ms">
+          <p>Most of what I build is applied rather than experimental: OCR and document processing, CRM workflows, voice agents, scheduling, content pipelines, reporting. Real business operations, with testing protocols behind them, because the failure mode of an unattended system is that nobody notices it stopped.</p>
+        </div>
+        <div class="reveal" style="transition-delay:160ms">
+          <p>The part I find most interesting is the translation step — taking a problem someone has described loosely, working out what the system actually has to guarantee, and designing around the places where an API will quietly return the wrong thing rather than an error.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="skills">
+<!-- ==================== SKILLS ==================== -->
+<section id="skills" class="ruled">
   <div class="wrap">
-    <p class="label">Technical skills</p>
-    <div class="label-rule"></div>
-    <dl class="skills">
-      <dt>Automation &amp; AI</dt>
-      <dd>n8n, Claude API, Google Gemini API, GPT-4, Retell AI</dd>
-      <dt>Languages</dt>
-      <dd>Python, JavaScript, TypeScript, SQL</dd>
-      <dt>Platforms &amp; tools</dt>
-      <dd>Node.js, Express.js, Next.js, Supabase, PostgreSQL, Vercel, GitHub, PM2, Jupyter Notebook, Google Colab</dd>
-      <dt>Visualisation</dt>
-      <dd>Power BI, Tableau</dd>
-      <dt>Data &amp; ML</dt>
-      <dd>NumPy, Pandas, Matplotlib, Seaborn, OpenCV, scikit-learn, Excel</dd>
-    </dl>
+    <div class="reveal">
+      <div class="section-head">
+        <p class="eyebrow">Toolkit</p>
+        <h2>What I work with</h2>
+        <p class="lead">Tools I've used to ship something real, not just read about.</p>
+      </div>
+    </div>
+
+    <div class="kit-grid">
+      <div class="reveal"><div class="card kit">
+        <h3>Automation &amp; AI</h3>
+        <ul><li>n8n</li><li>Claude API</li><li>Google Gemini API</li><li>GPT-4</li><li>Retell AI</li><li>Hyperagent</li><li>Sora-2</li><li>Prompt engineering</li></ul>
+      </div></div>
+
+      <div class="reveal" style="transition-delay:70ms"><div class="card kit">
+        <h3>Languages</h3>
+        <ul><li>Python</li><li>JavaScript</li><li>TypeScript</li><li>SQL</li></ul>
+      </div></div>
+
+      <div class="reveal" style="transition-delay:140ms"><div class="card kit">
+        <h3>Backend &amp; Cloud</h3>
+        <ul><li>Node.js</li><li>Express.js</li><li>Next.js</li><li>Supabase</li><li>PostgreSQL</li><li>Vercel</li><li>PM2</li><li>REST APIs</li><li>Webhooks</li></ul>
+      </div></div>
+
+      <div class="reveal" style="transition-delay:210ms"><div class="card kit">
+        <h3>Data &amp; ML</h3>
+        <ul><li>NumPy</li><li>Pandas</li><li>Matplotlib</li><li>Seaborn</li><li>scikit-learn</li><li>TensorFlow</li><li>XGBoost</li><li>OpenCV</li></ul>
+      </div></div>
+
+      <div class="reveal" style="transition-delay:280ms"><div class="card kit">
+        <h3>Visualisation</h3>
+        <ul><li>Power BI</li><li>Tableau</li><li>Excel</li><li>KPI reporting</li></ul>
+      </div></div>
+
+      <div class="reveal" style="transition-delay:350ms"><div class="card kit">
+        <h3>Tooling</h3>
+        <ul><li>Git</li><li>GitHub</li><li>GitHub Actions</li><li>Jupyter Notebook</li><li>Google Colab</li></ul>
+      </div></div>
+    </div>
   </div>
 </section>
 
-<section id="education">
+<!-- ==================== EXPERIENCE ==================== -->
+<section id="experience" class="ruled">
   <div class="wrap">
-    <p class="label">Education</p>
-    <div class="label-rule"></div>
-    <div class="edu">
-      <div class="edu-item">
-        <div>
-          <h3>BSc Data Science</h3>
-          <p>Institute of Management Sciences (IMSciences), Peshawar</p>
-        </div>
-        <span>Degree</span>
+    <div class="reveal">
+      <div class="section-head">
+        <p class="eyebrow">Background</p>
+        <h2>Where I've been</h2>
       </div>
-      <div class="edu-item">
-        <div>
-          <h3>O-Levels &amp; A-Levels</h3>
-          <p>Beaconhouse School System</p>
-        </div>
-        <span>School</span>
+    </div>
+
+    <ol class="timeline">
+      <li class="reveal">
+        <span class="dot" aria-hidden="true"></span>
+        <p class="kicker">AI Automation Engineer</p>
+        <h3>Automation &amp; Integration</h3>
+        <p class="org">Devinci Codes</p>
+        <ul class="points">
+          <li>Built integrations across n8n, third-party APIs, AI models and cloud platforms to unify disconnected business systems, by mapping system dependencies and configuring secure API connections.</li>
+          <li>Automated document processing, reporting, CRM workflows and operational pipelines, improving data accuracy and standardising recurring processes.</li>
+          <li>Delivered production systems spanning OCR, scheduling, analytics and workflow automation for live business operations, with testing protocols behind them.</li>
+          <li>Removed manual bottlenecks by integrating LLM-driven decision logic into client processes.</li>
+        </ul>
+      </li>
+
+      <li class="reveal" style="transition-delay:80ms">
+        <span class="dot" aria-hidden="true"></span>
+        <p class="kicker">AI Automation Engineer</p>
+        <h3>Workflow Automation</h3>
+        <p class="org">Zirium AI</p>
+        <ul class="points">
+          <li>Designed and maintained workflow automations integrating third-party APIs, CRMs and internal databases.</li>
+          <li>Built webhook-driven pipelines handling scheduling, lead capture and notification delivery.</li>
+          <li>Reduced manual, repetitive processes to unattended scheduled jobs with error handling and alerting.</li>
+          <li>Modelled structured data for analytical querying and connected it to Power BI and Tableau reporting layers.</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== EDUCATION ==================== -->
+<section id="education" class="ruled">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-head">
+        <p class="eyebrow">Education</p>
+        <h2>Where I studied</h2>
       </div>
-      <div class="edu-item">
-        <div>
-          <h3>Data Analyst Certification</h3>
-          <p>DataCamp</p>
+    </div>
+
+    <div class="edu-grid">
+      <div class="reveal"><div class="card edu">
+        <p class="kicker">Degree</p>
+        <h3>BSc Data Science</h3>
+        <p>Institute of Management Sciences (IMSciences), Peshawar</p>
+      </div></div>
+
+      <div class="reveal" style="transition-delay:70ms"><div class="card edu">
+        <p class="kicker">School</p>
+        <h3>O-Levels &amp; A-Levels</h3>
+        <p>Beaconhouse School System</p>
+      </div></div>
+
+      <div class="reveal" style="transition-delay:140ms"><div class="card edu">
+        <p class="kicker">Certification</p>
+        <h3>Data Analyst</h3>
+        <p>DataCamp</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section id="contact" class="ruled">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="contact-panel">
+        <div class="contact-glow" aria-hidden="true"></div>
+        <div class="contact-inner">
+          <p class="eyebrow">Contact</p>
+          <h2>Have a process that should <span class="text-gradient">run itself</span>?</h2>
+          <p class="lead">I'm open to freelance and full-time work. The fastest way to reach me is email — I reply to everything.</p>
+          <div class="contact-actions">
+            <a href="mailto:iyusrak@gmail.com" class="btn-primary">iyusrak@gmail.com
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+            <div class="icon-links">
+              <a href="mailto:iyusrak@gmail.com" aria-label="Email" title="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/yusra-khan/" rel="noreferrer noopener" aria-label="LinkedIn" title="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95C20.4 8.75 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2.05-3.3-2.05 0-2.37 1.57-2.37 3.2V21H9z"/></svg>
+              </a>
+              <a href="https://github.com/iyusrakhan" rel="noreferrer noopener" aria-label="GitHub" title="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
-        <span>Certification</span>
       </div>
     </div>
   </div>
@@ -460,27 +721,52 @@
 </main>
 
 <footer>
-  <div class="wrap">Yusra Khan — AI Automation Engineer</div>
+  <div class="foot">
+    <p>© 2026 Yusra Khan</p>
+    <p class="built">AI Automation Engineer</p>
+  </div>
 </footer>
 
 <script>
 (function(){
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var cards = document.querySelectorAll('.card');
-  cards.forEach(function(card){
-    card.addEventListener('pointermove', function(e){
-      var r = card.getBoundingClientRect();
-      var px = (e.clientX - r.left) / r.width;
-      var py = (e.clientY - r.top) / r.height;
-      card.style.setProperty('--mx', (px*100) + '%');
-      card.style.setProperty('--my', (py*100) + '%');
-      card.style.transform =
-        'rotateX(' + ((0.5-py)*5).toFixed(2) + 'deg) ' +
-        'rotateY(' + ((px-0.5)*5).toFixed(2) + 'deg) ' +
-        'translateY(-5px)';
-    });
-    card.addEventListener('pointerleave', function(){ card.style.transform = ''; });
+  // header background once scrolled
+  var header = document.getElementById('siteHeader');
+  function onScroll(){ header.classList.toggle('stuck', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // mobile menu
+  var btn = document.getElementById('menuBtn');
+  var menu = document.getElementById('mobile-menu');
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   });
+  menu.addEventListener('click', function(e){
+    if (e.target.tagName === 'A'){
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      btn.setAttribute('aria-label','Open menu');
+    }
+  });
+
+  // scroll reveal
+  var items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    items.forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {rootMargin:'0px 0px -10% 0px', threshold:0.05});
+  items.forEach(function(el){ io.observe(el); });
 })();
 </script>
 </body>
