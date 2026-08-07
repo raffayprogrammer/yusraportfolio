@@ -78,9 +78,8 @@
   }
 
   /* ---------- experience ---------- */
-  .role-block{display:grid;grid-template-columns:150px 1fr;gap:26px;padding:24px 0;border-top:1px solid var(--rule)}
+  .role-block{padding:26px 0;border-top:1px solid var(--rule)}
   .role-block:first-of-type{border-top:0;padding-top:0}
-  .when{font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.6;letter-spacing:.02em}
   .org{font-family:var(--mono);font-size:12px;color:var(--accent);margin:0 0 12px;letter-spacing:.02em}
   ul.points{margin:12px 0 0;padding-left:18px}
   ul.points li{margin:0 0 7px;font-size:14.5px;line-height:1.6}
@@ -179,51 +178,30 @@
     <p class="label">Experience</p>
 
     <div class="role-block">
-      <div class="when">April 2026<br>to present</div>
-      <div>
-        <h2>AI Automation Engineer</h2>
-        <p class="org">Devinci Codes &middot; Lahore, Pakistan</p>
-        <p>Building integrations across n8n, third-party APIs, AI models and cloud platforms to
-           unify disconnected business systems, by mapping system dependencies and configuring
-           secure API connections.</p>
-        <ul class="points">
-          <li>Automated document processing, reporting, CRM workflows and operational pipelines,
-              improving data accuracy and standardising recurring processes.</li>
-          <li>Built production systems spanning OCR, scheduling, analytics and workflow automation
-              for live business operations, with testing protocols behind them.</li>
-          <li>Removed manual bottlenecks by integrating LLM-driven decision logic into client
-              processes.</li>
-        </ul>
-      </div>
+      <h2>AI Automation Engineer</h2>
+      <p class="org">Devinci Codes</p>
+      <p>Building integrations across n8n, third-party APIs, AI models and cloud platforms to
+         unify disconnected business systems, by mapping system dependencies and configuring
+         secure API connections.</p>
+      <ul class="points">
+        <li>Automated document processing, reporting, CRM workflows and operational pipelines,
+            improving data accuracy and standardising recurring processes.</li>
+        <li>Built production systems spanning OCR, scheduling, analytics and workflow automation
+            for live business operations, with testing protocols behind them.</li>
+        <li>Removed manual bottlenecks by integrating LLM-driven decision logic into client
+            processes.</li>
+      </ul>
     </div>
 
     <div class="role-block">
-      <div class="when">Oct 2025<br>to Nov 2025</div>
-      <div>
-        <h2>Data Science &amp; Training Program</h2>
-        <p class="org">Arch Technologies</p>
-        <p>Applied training covering machine learning, data analysis and model development across
-           the full ML lifecycle.</p>
-        <ul class="points">
-          <li>Hands-on work with supervised learning, feature engineering and deployment workflows.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="role-block">
-      <div class="when">Jul 2025<br>to Aug 2025</div>
-      <div>
-        <h2>Data Visualization Associate</h2>
-        <p class="org">Excelerate</p>
-        <p>Data Analyst Associate internship covering data manipulation, visualisation and
-           reporting on real business datasets.</p>
-        <ul class="points">
-          <li>Applied statistical analysis and exploratory data analysis to turn raw data into
-              clear business narratives.</li>
-          <li>Built interactive dashboards and structured reports enabling self-service analytics
-              for stakeholders.</li>
-        </ul>
-      </div>
+      <h2>AI Automation Engineer</h2>
+      <p class="org">Zirium AI</p>
+      <p>Designing and delivering automation systems for client operations, spanning workflow
+         orchestration, LLM integration and multi-system API work.</p>
+      <ul class="points">
+        <li>Built end-to-end automation pipelines connecting CRMs, cloud services and AI models.</li>
+        <li>Delivered production systems with validation, error handling and monitoring behind them.</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -235,6 +213,16 @@
     <div class="group">
       <p class="group-name">Production automation platforms</p>
       <div class="grid">
+        <article class="card">
+          <h3>Titan Daily Command Board</h3>
+          <p>A productised, multi-tenant SaaS dashboard for home-service consultants, replacing a
+             manual embed with automated pulls from the ServiceTitan CRM API. Surfaces MTD revenue,
+             call volume, close rates, sold hours and today's opportunities across business units in
+             real time, with DST-aware timezone correction, paginated calls across multiple reporting
+             endpoints, and encrypted per-tenant credential storage.</p>
+          <p class="stack">Next.js · TypeScript · Supabase · NextAuth · ServiceTitan API · Vercel · AES-256-GCM</p>
+        </article>
+
         <article class="card">
           <h3>Invoice-to-PO Automation Platform</h3>
           <p>A full-scale AI-powered invoice processing platform that converts vendor invoices into
@@ -358,9 +346,9 @@
       <dt>Automation &amp; AI</dt>
       <dd>n8n, Claude API, Google Gemini API, GPT-4, Retell AI</dd>
       <dt>Languages</dt>
-      <dd>Python, JavaScript, SQL</dd>
+      <dd>Python, JavaScript, TypeScript, SQL</dd>
       <dt>Platforms &amp; tools</dt>
-      <dd>Node.js, Express.js, Supabase, PostgreSQL, GitHub, PM2, Jupyter Notebook, Google Colab</dd>
+      <dd>Node.js, Express.js, Next.js, Supabase, PostgreSQL, Vercel, GitHub, PM2, Jupyter Notebook, Google Colab</dd>
       <dt>Visualisation</dt>
       <dd>Power BI, Tableau</dd>
       <dt>Data &amp; ML</dt>
