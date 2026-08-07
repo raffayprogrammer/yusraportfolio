@@ -118,6 +118,65 @@
 
   footer{padding:40px 0 64px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
 
+
+  /* ---------- sticky nav ---------- */
+  .topnav{
+    position:sticky; top:0; z-index:40;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:saturate(160%) blur(10px);
+    -webkit-backdrop-filter:saturate(160%) blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
+  .navinner{display:flex;align-items:center;gap:20px;height:56px}
+  .navname{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--ink);
+    font-weight:600;white-space:nowrap;
+  }
+  .topnav ul{
+    display:flex;gap:7px;list-style:none;margin:0;padding:0;
+    overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .topnav ul::-webkit-scrollbar{display:none}
+  .topnav a{
+    display:block;font-family:var(--mono);font-size:12px;letter-spacing:.03em;
+    text-decoration:none;color:var(--muted);white-space:nowrap;
+    padding:7px 13px;border:1px solid transparent;border-radius:20px;
+    transition:color .16s ease, border-color .16s ease, background .16s ease, transform .16s ease;
+  }
+  .topnav a:hover{
+    color:var(--ink);border-color:var(--rule);background:var(--panel);transform:translateY(-1px);
+  }
+  .topnav a.nav-cta{color:var(--accent);border-color:var(--accent-soft);background:var(--accent-soft)}
+  .topnav a.nav-cta:hover{border-color:var(--accent)}
+  section{scroll-margin-top:72px}
+
+  /* ---------- card depth ---------- */
+  .grid{perspective:1100px}
+  .card{
+    position:relative; overflow:hidden;
+    border:1px solid var(--rule);
+    transform-style:preserve-3d;
+    transition:transform .25s cubic-bezier(.2,.7,.3,1),
+               box-shadow .25s ease, border-color .25s ease;
+    will-change:transform;
+  }
+  .card::before{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),
+               color-mix(in srgb, var(--accent) 13%, transparent), transparent 62%);
+    opacity:0; transition:opacity .25s ease;
+  }
+  .card:hover{
+    border-color:color-mix(in srgb, var(--accent) 42%, var(--rule));
+    box-shadow:0 16px 34px -18px rgba(0,0,0,.45), 0 3px 10px -6px rgba(0,0,0,.25);
+  }
+  .card:hover::before{opacity:1}
+  .card > *{position:relative}
+  @media (prefers-reduced-motion: reduce){
+    .card{transition:border-color .2s ease}
+    .card::before{display:none}
+  }
+
   @media (max-width:680px){
     header{padding:48px 0 32px}
     section{padding:40px 0}
@@ -126,6 +185,8 @@
     .skills dt{padding-bottom:2px;border-bottom:0}
     .edu-item{grid-template-columns:1fr}
     .edu-item span{text-align:left}
+    .navname{display:none}
+    .navinner{gap:0}
   }
 </style>
 </head>
@@ -151,9 +212,23 @@
   </div>
 </header>
 
+<nav class="topnav" aria-label="Sections">
+  <div class="wrap navinner">
+    <span class="navname">Yusra Khan</span>
+    <ul>
+      <li><a href="#work">Focus</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a class="nav-cta" href="mailto:iyusrak@gmail.com">Get in touch</a></li>
+    </ul>
+  </div>
+</nav>
+
 <main id="main">
 
-<section>
+<section id="work">
   <div class="wrap">
     <p class="label">What I work on</p>
     <ul class="tags">
@@ -173,7 +248,7 @@
   </div>
 </section>
 
-<section>
+<section id="experience">
   <div class="wrap">
     <p class="label">Experience</p>
 
@@ -210,7 +285,7 @@
   </div>
 </section>
 
-<section>
+<section id="projects">
   <div class="wrap">
     <p class="label">Selected work</p>
 
@@ -343,7 +418,7 @@
   </div>
 </section>
 
-<section>
+<section id="skills">
   <div class="wrap">
     <p class="label">Technical skills</p>
     <dl class="skills">
@@ -361,7 +436,7 @@
   </div>
 </section>
 
-<section>
+<section id="education">
   <div class="wrap">
     <p class="label">Education</p>
     <div class="edu">
@@ -396,5 +471,26 @@
   <div class="wrap">Yusra Khan — AI Automation Engineer</div>
 </footer>
 
+
+<script>
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    card.addEventListener('pointermove', function(e){
+      var r = card.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      card.style.setProperty('--mx', (px*100) + '%');
+      card.style.setProperty('--my', (py*100) + '%');
+      card.style.transform =
+        'rotateX(' + ((0.5-py)*5).toFixed(2) + 'deg) ' +
+        'rotateY(' + ((px-0.5)*5).toFixed(2) + 'deg) ' +
+        'translateY(-5px)';
+    });
+    card.addEventListener('pointerleave', function(){ card.style.transform = ''; });
+  });
+})();
+</script>
 </body>
 </html>
