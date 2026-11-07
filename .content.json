@@ -1,0 +1,520 @@
+{
+ "projects": [
+  {
+   "title": "Titan Daily Command Board",
+   "tag": "SaaS",
+   "p1": "A productised, multi-tenant SaaS dashboard for home-service consultants, replacing a manual embed with automated pulls from the ServiceTitan CRM API.",
+   "p2": "Surfaces MTD revenue, call volume, close rates, sold hours and today's opportunities across business units in real time — with DST-aware timezone correction, paginated calls across multiple reporting endpoints, and encrypted per-tenant credential storage.",
+   "figures": [
+    [
+     "multi",
+     "tenant"
+    ],
+    [
+     "real time",
+     "CRM sync"
+    ]
+   ],
+   "pills": [
+    "Next.js",
+    "TypeScript",
+    "Supabase",
+    "NextAuth",
+    "ServiceTitan API",
+    "Vercel",
+    "AES-256-GCM"
+   ]
+  },
+  {
+   "title": "Invoice-to-PO Automation Platform",
+   "tag": "Automation",
+   "p1": "A full-scale AI-powered invoice processing platform that converts vendor invoices into purchase orders automatically, taking manual data entry out of procurement.",
+   "p2": "Integrated with ServiceTitan and Jobber so processing stays in step with the field-service systems already in use, with multi-vendor PDF parsing, validation and tax handling built into the pipeline rather than bolted on after.",
+   "figures": [
+    [
+     "2",
+     "field-service CRMs"
+    ],
+    [
+     "0",
+     "manual data entry"
+    ]
+   ],
+   "pills": [
+    "Node.js",
+    "Express",
+    "Supabase",
+    "Gemini API",
+    "n8n",
+    "PM2",
+    "JavaScript"
+   ]
+  },
+  {
+   "title": "AI Voice Scheduling Agent",
+   "tag": "Voice AI",
+   "p1": "A voice agent wired into Google Calendar for conversational appointment scheduling, removing the back-and-forth of manual calendar coordination.",
+   "p2": "Callers create, reschedule, delete and check availability through natural speech, with automation workflows keeping the calendar synchronised in real time behind the conversation.",
+   "figures": [
+    [
+     "4",
+     "calendar actions by voice"
+    ],
+    [
+     "live",
+     "conversation"
+    ]
+   ],
+   "pills": [
+    "Retell AI",
+    "n8n",
+    "Google Calendar API"
+   ]
+  },
+  {
+   "title": "Automated Daily Briefing Agent",
+   "tag": "Agent",
+   "p1": "Consolidates scattered information into a single daily intelligence summary, replacing the morning ritual of triaging three inboxes and two calendars by hand.",
+   "p2": "Pulls Gmail, Google Calendar and Outlook into one pipeline and generates a prioritised overview of emails, meetings and schedules — scheduled entirely through GitHub Actions, with no server to keep alive.",
+   "figures": [
+    [
+     "3",
+     "sources unified"
+    ],
+    [
+     "daily",
+     "unattended run"
+    ]
+   ],
+   "pills": [
+    "Claude API",
+    "Gmail API",
+    "Google Calendar API",
+    "Outlook API",
+    "GitHub Actions"
+   ]
+  },
+  {
+   "title": "AI-Powered Blog Content Engine",
+   "tag": "Content",
+   "p1": "An SEO-focused content generation system that runs live web research and produces long-form drafts automatically, publishing straight into WordPress through n8n.",
+   "p2": "Delivered with full architecture documentation mapping every integration touchpoint, so the pipeline can be handed over and maintained by someone who did not build it.",
+   "figures": [
+    [
+     "live",
+     "web research per draft"
+    ],
+    [
+     "auto",
+     "WordPress publish"
+    ]
+   ],
+   "pills": [
+    "Hyperagent",
+    "Claude Opus",
+    "n8n",
+    "WordPress"
+   ]
+  },
+  {
+   "title": "Smart Malaria Detection",
+   "tag": "Final year",
+   "p1": "A deep learning system that classifies parasitised against uninfected red blood cells, aimed at faster diagnosis in low-resource healthcare settings.",
+   "p2": "Built a preprocessing pipeline covering colour constancy correction, denoising, normalisation and augmentation, then trained and evaluated two CNN architectures against each other with a lightweight deployment path in mind.",
+   "figures": [
+    [
+     "2",
+     "CNN architectures compared"
+    ],
+    [
+     "4-stage",
+     "preprocessing pipeline"
+    ]
+   ],
+   "pills": [
+    "Python",
+    "TensorFlow",
+    "ResNet50",
+    "EfficientNetV2M",
+    "OpenCV"
+   ]
+  },
+  {
+   "title": "Epileptic Seizure Detection",
+   "tag": "Machine learning",
+   "p1": "EEG-based detection models for early identification of seizure events, trained on raw signal data rather than pre-engineered features.",
+   "p2": "Compared Random Forest, XGBoost and SVM classifiers, with preprocessing, feature extraction and SMOTE class balancing to correct the heavy imbalance in the dataset. Methodology documented in LaTeX so the results are reproducible.",
+   "figures": [
+    [
+     "3",
+     "classifiers benchmarked"
+    ],
+    [
+     "SMOTE",
+     "class rebalancing"
+    ]
+   ],
+   "pills": [
+    "Python",
+    "scikit-learn",
+    "XGBoost",
+    "SMOTE",
+    "LaTeX"
+   ]
+  },
+  {
+   "title": "MP3 to Structured Learning Documents",
+   "tag": "Automation",
+   "p1": "Converts lecture audio recordings into structured, textbook-style Google Docs, replacing manual note-taking entirely.",
+   "p2": "Architected across two layers — no-code automation handling orchestration and delivery, custom Python handling the transcription and restructuring work that the no-code layer could not do cleanly.",
+   "figures": [
+    [
+     "audio",
+     "to structured document"
+    ],
+    [
+     "2",
+     "layer architecture"
+    ]
+   ],
+   "pills": [
+    "n8n",
+    "Python",
+    "Google Colab",
+    "Google Docs API"
+   ]
+  },
+  {
+   "title": "AI Recipe–Tip Matching",
+   "tag": "Automation",
+   "p1": "Ingests and parses recipe and cooking-tip datasets from Google Drive, then pairs them using embedding-based semantic similarity rather than keyword matching.",
+   "p2": "Custom scoring and filtering logic keeps pairings relevant instead of merely similar, which is where naive similarity search usually falls down.",
+   "figures": [
+    [
+     "semantic",
+     "similarity matching"
+    ],
+    [
+     "custom",
+     "scoring logic"
+    ]
+   ],
+   "pills": [
+    "n8n",
+    "JavaScript",
+    "embeddings",
+    "Google Drive API"
+   ]
+  },
+  {
+   "title": "Social Media Carousel Generator",
+   "tag": "Content",
+   "p1": "Transforms raw content into Instagram-ready carousel posts, compressing a manual production cycle into a single automated run.",
+   "p2": "Cleaning, restructuring, caption generation and scheduled publishing run as sequential stages, so the pipeline goes from raw input to published post without a handoff in the middle.",
+   "figures": [
+    [
+     "4",
+     "pipeline stages"
+    ],
+    [
+     "scheduled",
+     "publishing"
+    ]
+   ],
+   "pills": [
+    "n8n",
+    "LLM APIs",
+    "Instagram publishing"
+   ]
+  },
+  {
+   "title": "AI UGC Ad Video Generator",
+   "tag": "Content",
+   "p1": "Turns static product images into short-form UGC-style video advertisements through an automated image-to-video pipeline.",
+   "p2": "Produces multiple variations per product so creative testing can run at campaign scale instead of one asset at a time.",
+   "figures": [
+    [
+     "image",
+     "to video"
+    ],
+    [
+     "many",
+     "variants per product"
+    ]
+   ],
+   "pills": [
+    "Sora-2",
+    "n8n"
+   ]
+  },
+  {
+   "title": "Airbnb &amp; Netflix Analytics",
+   "tag": "Analytics",
+   "p1": "A Power BI dashboard surfacing Airbnb pricing trends, demand patterns and review insights for market analysis, built on structured underlying data models.",
+   "p2": "Alongside it, SQL-based exploratory analysis of Netflix datasets uncovering content and viewing trends across genres, actors, release years and countries.",
+   "figures": [
+    [
+     "2",
+     "analysis projects"
+    ],
+    [
+     "4",
+     "dimensions analysed"
+    ]
+   ],
+   "pills": [
+    "Power BI",
+    "SQL",
+    "data modelling"
+   ]
+  },
+  {
+   "title": "Client Lifecycle Automation Platform",
+   "tag": "Automation",
+   "p1": "Multi-system platform running a service business's full client lifecycle — lead intake, onboarding, contract execution and offboarding — across Airtable, Asana, Slack, DocuSign and Google Drive.",
+   "p2": "Root-caused a silent data-corruption fault where an unfiltered record lookup was fanning every downstream operation across unrelated client records. Rebuilt the correlation model around persisted record identifiers rather than name matching, and added idempotency guards so status-driven triggers can't duplicate work.",
+   "figures": [
+    [
+     "5",
+     "systems joined"
+    ],
+    [
+     "4",
+     "lifecycle stages"
+    ]
+   ],
+   "pills": [
+    "Make.com",
+    "Airtable API",
+    "Asana API",
+    "Slack API",
+    "DocuSign API",
+    "Google Drive API",
+    "Python"
+   ]
+  },
+  {
+   "title": "Squeegee Squad LA &mdash; AI Quote Estimator",
+   "tag": "Lead Automation + AI",
+   "p1": "A 3-part platform (public estimate form, internal field-rep tool, live owner dashboard) that automates lead intake and quoting for a Los Angeles cleaning company, replacing a manual 23-section pricing PDF with an n8n-backed pricing engine that returns customer-facing estimates in under 15 seconds.",
+   "p2": "Uses GPT-4o Vision to auto-detect quantity, condition, access and story count from uploaded site photos; applies condition/access/urgency/logistics/territory/story multipliers with a per-service margin-protection floor; flags below-minimum jobs, low-margin quotes, and always-review services (pressure washing, high-access) for internal approval; writes every lead to Google Sheets and surfaces revenue mix, win rate, strategic accounts and customer contacts on a Vercel dashboard that auto-refreshes every 15 minutes.",
+   "figures": [
+    [
+     "AI",
+     "vision"
+    ],
+    [
+     "pricing",
+     "engine"
+    ],
+    [
+     "multi",
+     "app"
+    ],
+    [
+     "real",
+     "time"
+    ],
+    [
+     "review",
+     "flags"
+    ]
+   ],
+   "pills": [
+    "Next.js",
+    "TypeScript",
+    "n8n",
+    "OpenAI GPT-4o",
+    "Google Sheets API"
+   ]
+  },
+  {
+   "title": "Asbestos UK Teams &mdash; Multi-Tenant AI Platform",
+   "tag": "Full-Stack + AI Platform",
+   "p1": "One Next.js codebase serving 48+ live UK city websites, each with an on-site AI sales agent that scopes jobs, reads uploaded survey documents, prices them, and files the lead straight into the company CRM &mdash; plus the SEO, analytics and deployment infrastructure to run the whole estate.",
+   "p2": "Host-based tenant routing resolves every incoming domain to its own city profile from 55 typed configurations, so a new city is a config, not a codebase. A GPT-4o agent handles multi-item quoting with AI catalog-gap price estimation, while Gemini performs survey-document OCR with a large-file pipeline (Vercel Blob direct-to-storage plus the Gemini File API) so oversized management surveys never fail. Every quote and enquiry flows into the CRM &mdash; source-tagged by city, with role-based visibility, address captured at accept, and automatic diary booking. Rebuilt each site&rsquo;s technical SEO (per-domain titles, meta, canonical, Open Graph, JSON-LD, sitemaps and robots) and shipped a Google Search Console ranking dashboard across a GitHub-to-Vercel auto-deploy estate.",
+   "figures": [
+    [
+     "multi",
+     "tenant"
+    ],
+    [
+     "AI",
+     "quoting"
+    ],
+    [
+     "document",
+     "OCR"
+    ],
+    [
+     "CRM",
+     "sync"
+    ],
+    [
+     "technical",
+     "SEO"
+    ],
+    [
+     "ranking",
+     "analytics"
+    ]
+   ],
+   "pills": [
+    "Next.js",
+    "OpenAI GPT-4o",
+    "Google Gemini",
+    "Vercel Blob",
+    "Vercel",
+    "Search Console"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "Automation &amp; AI",
+   "items": [
+    "n8n",
+    "Make.com",
+    "Claude API",
+    "Google Gemini API",
+    "GPT-4",
+    "Retell AI",
+    "Hyperagent",
+    "Sora-2",
+    "Prompt engineering"
+   ]
+  },
+  {
+   "name": "Languages",
+   "items": [
+    "Python",
+    "JavaScript",
+    "TypeScript",
+    "SQL"
+   ]
+  },
+  {
+   "name": "Backend &amp; Cloud",
+   "items": [
+    "Node.js",
+    "Express.js",
+    "Next.js",
+    "Supabase",
+    "PostgreSQL",
+    "Vercel",
+    "PM2",
+    "REST APIs",
+    "Webhooks"
+   ]
+  },
+  {
+   "name": "Data &amp; ML",
+   "items": [
+    "NumPy",
+    "Pandas",
+    "Matplotlib",
+    "Seaborn",
+    "scikit-learn",
+    "TensorFlow",
+    "XGBoost",
+    "OpenCV"
+   ]
+  },
+  {
+   "name": "Visualisation",
+   "items": [
+    "Power BI",
+    "Tableau",
+    "Excel",
+    "KPI reporting"
+   ]
+  },
+  {
+   "name": "Tooling",
+   "items": [
+    "Git",
+    "GitHub",
+    "GitHub Actions",
+    "Jupyter Notebook",
+    "Google Colab"
+   ]
+  }
+ ],
+ "experience": [
+  {
+   "kicker": "Automation &amp; CRM Specialist",
+   "role": "CRM &amp; Workflow Automation",
+   "org": "Zaptics",
+   "when": "Aug 2026 &ndash; Present &middot; Project based",
+   "points": [
+    "Building CRM and workflow automations in Make.com and n8n on a project basis &mdash; lead routing, pipeline-stage triggers and cross-system record syncs.",
+    "Connecting CRM records to downstream tools through webhooks and scheduled jobs so status changes propagate without manual re-entry."
+   ]
+  },
+  {
+   "kicker": "AI Automation Engineer",
+   "role": "AI Workflow Automation",
+   "org": "Golden Carthage &middot; Tunisia (Remote)",
+   "when": "6 months &middot; Project based",
+   "points": [
+    "Designed and delivered AI-driven automation workflows on a six-month, project-based engagement, working fully remote with a Tunisia-based team.",
+    "Wired LLM steps into n8n pipelines and connected them to existing business tools through REST APIs and webhooks."
+   ]
+  },
+  {
+   "kicker": "AI Automation Engineer",
+   "role": "Automation &amp; Integration",
+   "org": "Devinci Codes",
+   "when": "",
+   "points": [
+    "Built integrations across n8n, third-party APIs, AI models and cloud platforms to unify disconnected business systems, by mapping system dependencies and configuring secure API connections.",
+    "Automated document processing, reporting, CRM workflows and operational pipelines, improving data accuracy and standardising recurring processes.",
+    "Delivered production systems spanning OCR, scheduling, analytics and workflow automation for live business operations, with testing protocols behind them.",
+    "Removed manual bottlenecks by integrating LLM-driven decision logic into client processes."
+   ]
+  },
+  {
+   "kicker": "AI Automation Engineer",
+   "role": "Workflow Automation",
+   "org": "Zirium AI",
+   "when": "",
+   "points": [
+    "Designed and maintained workflow automations integrating third-party APIs, CRMs and internal databases.",
+    "Built webhook-driven pipelines handling scheduling, lead capture and notification delivery.",
+    "Reduced manual, repetitive processes to unattended scheduled jobs with error handling and alerting.",
+    "Modelled structured data for analytical querying and connected it to Power BI and Tableau reporting layers."
+   ]
+  }
+ ],
+ "education": [
+  {
+   "kicker": "Degree",
+   "title": "BSc Data Science",
+   "org": "Institute of Management Sciences (IMSciences), Peshawar"
+  },
+  {
+   "kicker": "School",
+   "title": "O-Levels &amp; A-Levels",
+   "org": "Beaconhouse School System"
+  },
+  {
+   "kicker": "Certification",
+   "title": "Data Analyst",
+   "org": "DataCamp"
+  }
+ ],
+ "stats": [
+  [
+   "Projects shipped end to end",
+   "15"
+  ],
+  [
+   "Production systems in live use",
+   "5"
+  ],
+  [
+   "Field-service CRMs integrated",
+   "2"
+  ]
+ ]
+}
