@@ -170,9 +170,11 @@ section{padding-block:clamp(4rem,9vw,7.5rem)}
   display:grid;gap:.5rem 2rem;grid-template-columns:1fr;
   padding:2rem 0;border-bottom:1px solid var(--rule);
 }
-@media (min-width:52rem){.row{grid-template-columns:4rem 20rem 1fr;padding:2.25rem 0}}
+@media (min-width:52rem){.row{grid-template-columns:3.5rem 23rem 1fr;padding:2.5rem 0}}
 .row-num{font-family:var(--mono);font-size:.8125rem;color:var(--accent);padding-top:.35rem}
 .row-tag{margin-top:.5rem}
+.row-media{margin-top:1.25rem}
+.row-media video{width:100%;aspect-ratio:16/9;background:var(--paper-2);border:1px solid var(--rule);object-fit:cover}
 .row p{color:var(--graphite);font-size:.9375rem;line-height:1.6;max-width:62ch}
 .row .p2{margin-top:.75rem;color:var(--faint)}
 .figs{display:flex;flex-wrap:wrap;gap:1.75rem;margin-top:1.25rem}
@@ -250,22 +252,16 @@ def page():
         rows.append(
             '<article class="row rv">'
             '<div class="row-num">%02d</div>'
-            '<div><h3>%s</h3><p class="label row-tag">%s</p></div>'
+            '<div><h3>%s</h3><p class="label row-tag">%s</p>'
+            '<div class="row-media"><video controls preload="none" playsinline '
+            'poster="demos/%s.png"><source src="demos/%s.mp4" type="video/mp4">'
+            '</video></div></div>'
             '<div><p>%s</p>%s%s%s</div>'
-            '</article>' % (i, p["title"], p["tag"], p["p1"],
+            '</article>' % (i, p["title"], p["tag"],
+                            FILMS[i-1]["slug"], FILMS[i-1]["slug"], p["p1"],
                             '<p class="p2">%s</p>' % p["p2"] if p["p2"] else "",
                             '<div class="figs">%s</div>' % figs if figs else "",
                             '<div class="pills">%s</div>' % pills if pills else ""))
-
-    demos = []
-    for i, f in enumerate(FILMS, 1):
-        blurb = f["promise"] + " " + f["points"][0] + "."
-        demos.append(
-            '<article class="demo rv">'
-            '<video controls preload="none" playsinline poster="demos/%s.png">'
-            '<source src="demos/%s.mp4" type="video/mp4"></video>'
-            '<div class="demo-meta"><span class="n">%02d</span><div><h3>%s</h3>'
-            '<p>%s</p></div></div></article>' % (f["slug"], f["slug"], i, f["title"], blurb))
 
     kit = "".join(
         '<div class="kit-row rv"><p class="label">%s</p>'
@@ -306,7 +302,7 @@ def page():
   <div class="wrap mast-in">
     <a class="wordmark" href="#top">{{NAME}}<span>.</span></a>
     <nav class="navlinks" aria-label="Main">
-      <a href="#work">Work</a><a href="#demos">Films</a><a href="#about">About</a>
+      <a href="#work">Work</a><a href="#about">About</a>
       <a href="#kit">Toolkit</a><a href="#cv">Background</a><a class="cta" href="#contact">Contact</a>
     </nav>
     <button class="menu-btn" id="mb" aria-expanded="false" aria-controls="mobnav" aria-label="Menu">
@@ -314,7 +310,7 @@ def page():
     </button>
   </div>
   <div class="wrap" id="mobnav">
-    <a href="#work">Work</a><a href="#demos">Films</a><a href="#about">About</a>
+    <a href="#work">Work</a><a href="#about">About</a>
     <a href="#kit">Toolkit</a><a href="#cv">Background</a><a href="#contact">Contact</a>
   </div>
 </header>
@@ -329,7 +325,7 @@ def page():
       <p class="lede">{{LEDE}}</p>
       <div class="actions">
         <a class="btn" href="#work">See the work</a>
-        <a class="btn btn-ghost" href="#demos">Watch the films</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
       </div>
     </div>
     <div class="stats">{{STATS}}</div>
@@ -339,18 +335,9 @@ def page():
     <div class="shead rv">
       <p class="label">Selected work</p>
       <div><h2>Fifteen systems, built end to end</h2>
-        <p class="lede">From the API call that starts the process to the moment a person stops doing the job by hand.</p></div>
+        <p class="lede">From the API call that starts the process to the moment a person stops doing the job by hand. Each one has a short film.</p></div>
     </div>
     <div class="index">{{ROWS}}</div>
-  </section>
-
-  <section class="wrap rule" id="demos">
-    <div class="shead rv">
-      <p class="label">Walkthroughs</p>
-      <div><h2>See them running</h2>
-        <p class="lede">A short film on each build &mdash; the problem it started from, how the pieces fit together, and what changed.</p></div>
-    </div>
-    <div class="demos">{{DEMOS}}</div>
   </section>
 
   <section class="wrap rule" id="about">
@@ -423,12 +410,12 @@ def page():
 </body>
 </html>
 """
-    vals = dict(SITE, CSS=CSS, STATS=stats, ROWS="".join(rows), DEMOS="".join(demos),
+    vals = dict(SITE, CSS=CSS, STATS=stats, ROWS="".join(rows),
                 ABOUT=about, KIT=kit, CV=cv, EDU=edu,
                 NAME=SITE["name"], ROLE=SITE["role"], LEDE=SITE["lede"],
                 EMAIL=SITE["email"], LINKEDIN=SITE["linkedin"], GITHUB=SITE["github"])
     for k in ("NAME","ROLE","LEDE","EMAIL","LINKEDIN","GITHUB","CSS","STATS",
-              "ROWS","DEMOS","ABOUT","KIT","CV","EDU"):
+              "ROWS","ABOUT","KIT","CV","EDU"):
         tpl = tpl.replace("{{%s}}" % k, vals[k])
     return tpl
 
