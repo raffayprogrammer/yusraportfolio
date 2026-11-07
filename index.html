@@ -167,6 +167,15 @@ h3{font-weight:600;letter-spacing:-.025em;color:var(--text)}
 .work-grid{margin-top:3.5rem;display:grid;gap:1.25rem}
 @media (min-width:64rem){.work-grid{grid-template-columns:repeat(2,1fr)}}
 .work-grid > *{display:flex}
+.demo-grid{margin-top:3.5rem;display:grid;gap:1.25rem}
+@media (min-width:64rem){.demo-grid{grid-template-columns:repeat(2,1fr)}}
+.demo-grid > *{display:flex}
+.demo{display:flex;flex:1;flex-direction:column;overflow:hidden}
+.demo video{width:100%;aspect-ratio:16/9;display:block;background:var(--bg-elevated);object-fit:cover}
+.demo-body{display:flex;flex:1;flex-direction:column;padding:1.5rem}
+@media (min-width:40rem){.demo-body{padding:1.75rem}}
+.demo-body h3{font-size:1.125rem}
+.demo-body p{margin-top:.75rem;font-size:.9375rem;line-height:1.6;color:var(--text-muted)}
 .proj{flex:1;display:flex;flex-direction:column;padding:1.5rem}
 @media (min-width:40rem){.proj{padding:1.75rem}}
 .proj-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
@@ -305,6 +314,7 @@ footer{border-top:1px solid var(--border);padding-block:2.5rem}
     <a href="#top" class="brand"><span>/</span>Yusra</a>
     <div class="nav-links">
       <a href="#work">Work</a>
+      <a href="#demos">Demos</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
@@ -317,6 +327,7 @@ footer{border-top:1px solid var(--border);padding-block:2.5rem}
   </nav>
   <div id="mobile-menu">
     <a href="#work">Work</a>
+      <a href="#demos">Demos</a>
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
@@ -593,6 +604,188 @@ footer{border-top:1px solid var(--border);padding-block:2.5rem}
         </div>
         <div class="pills">
           <span>Next.js</span><span>OpenAI GPT-4o</span><span>Google Gemini</span><span>Vercel Blob</span><span>Vercel</span><span>Search Console</span>
+        </div>
+      </article></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DEMOS ==================== -->
+<section id="demos" class="ruled">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-head">
+        <p class="eyebrow">Walkthroughs</p>
+        <h2>See them running</h2>
+        <p class="lead">A short film on each build &mdash; the problem it started from, how the pieces fit together, and what changed.</p>
+      </div>
+    </div>
+
+    <div class="demo-grid">
+
+      <div class="reveal"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/titan-command-board.png">
+          <source src="demos/titan-command-board.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>Titan Daily Command Board</h3>
+          <p>Live pulls from the ServiceTitan CRM API. MTD revenue, call volume, close rates and sold hours.</p>
+          <div class="pills"><span>Next.js</span><span>TypeScript</span><span>Supabase</span><span>NextAuth</span><span>ServiceTitan API</span><span>AES-256-GCM</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal" style="transition-delay:80ms"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/invoice-to-po.png">
+          <source src="demos/invoice-to-po.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>Invoice-to-PO Platform</h3>
+          <p>Vendor invoices become purchase orders automatically. Multi-vendor PDF parsing with built-in validation.</p>
+          <div class="pills"><span>Node.js</span><span>Express</span><span>Supabase</span><span>Gemini API</span><span>n8n</span><span>PM2</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/voice-scheduling-agent.png">
+          <source src="demos/voice-scheduling-agent.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>AI Voice Scheduling Agent</h3>
+          <p>Conversational scheduling, wired into Google Calendar. Create, reschedule, delete and check availability.</p>
+          <div class="pills"><span>Retell AI</span><span>n8n</span><span>Google Calendar API</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal" style="transition-delay:80ms"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/daily-briefing-agent.png">
+          <source src="demos/daily-briefing-agent.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>Automated Daily Briefing Agent</h3>
+          <p>One prioritised summary, built while you sleep. Prioritised overview of emails, meetings and schedules.</p>
+          <div class="pills"><span>Claude API</span><span>Gmail API</span><span>Google Calendar API</span><span>Outlook API</span><span>GitHub Actions</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/blog-content-engine.png">
+          <source src="demos/blog-content-engine.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>AI-Powered Blog Content Engine</h3>
+          <p>Researched drafts, published straight into WordPress. Long-form drafts generated automatically.</p>
+          <div class="pills"><span>Hyperagent</span><span>Claude Opus</span><span>n8n</span><span>WordPress</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal" style="transition-delay:80ms"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/malaria-detection.png">
+          <source src="demos/malaria-detection.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>Smart Malaria Detection</h3>
+          <p>Classifies parasitised against uninfected blood cells. Colour constancy correction, denoising, normalisation, augmentation.</p>
+          <div class="pills"><span>Python</span><span>TensorFlow</span><span>ResNet50</span><span>EfficientNetV2M</span><span>OpenCV</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/seizure-detection.png">
+          <source src="demos/seizure-detection.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>Epileptic Seizure Detection</h3>
+          <p>Trained on raw EEG signal, not engineered features. Preprocessing and feature extraction from raw EEG signal.</p>
+          <div class="pills"><span>Python</span><span>scikit-learn</span><span>XGBoost</span><span>SMOTE</span><span>LaTeX</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal" style="transition-delay:80ms"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/mp3-to-documents.png">
+          <source src="demos/mp3-to-documents.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>MP3 to Structured Documents</h3>
+          <p>Lecture audio becomes a textbook-style Google Doc. n8n orchestrates and delivers.</p>
+          <div class="pills"><span>n8n</span><span>Python</span><span>Google Colab</span><span>Google Docs API</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/recipe-tip-matching.png">
+          <source src="demos/recipe-tip-matching.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>AI Recipe-Tip Matching</h3>
+          <p>Semantic similarity, not keyword search. Ingestion and parsing straight from Google Drive.</p>
+          <div class="pills"><span>n8n</span><span>JavaScript</span><span>embeddings</span><span>Google Drive API</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal" style="transition-delay:80ms"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/carousel-generator.png">
+          <source src="demos/carousel-generator.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>Social Media Carousel Generator</h3>
+          <p>Raw content in, Instagram-ready carousels out. Cleaning and restructuring of raw input.</p>
+          <div class="pills"><span>n8n</span><span>LLM APIs</span><span>Instagram publishing</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/ugc-ad-generator.png">
+          <source src="demos/ugc-ad-generator.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>AI UGC Ad Video Generator</h3>
+          <p>Product images become short-form video ads. Automated image-to-video generation pipeline.</p>
+          <div class="pills"><span>Sora-2</span><span>n8n</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal" style="transition-delay:80ms"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/airbnb-netflix-analytics.png">
+          <source src="demos/airbnb-netflix-analytics.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>Airbnb & Netflix Analytics</h3>
+          <p>Power BI dashboards on structured data models. Airbnb pricing trends, demand patterns and review insights.</p>
+          <div class="pills"><span>Power BI</span><span>SQL</span><span>data modelling</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/client-lifecycle.png">
+          <source src="demos/client-lifecycle.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>Client Lifecycle Platform</h3>
+          <p>A full client lifecycle across five systems. An unfiltered record lookup was fanning writes across unrelated clients.</p>
+          <div class="pills"><span>Make.com</span><span>Airtable API</span><span>Asana API</span><span>Slack API</span><span>DocuSign API</span><span>Python</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal" style="transition-delay:80ms"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/squeegee-quote-estimator.png">
+          <source src="demos/squeegee-quote-estimator.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>AI Quote Estimator</h3>
+          <p>Customer-facing estimates in under 15 seconds. Condition, access, urgency, logistics, territory and story multipliers.</p>
+          <div class="pills"><span>Next.js</span><span>TypeScript</span><span>n8n</span><span>OpenAI GPT-4o</span><span>Google Sheets API</span></div>
+        </div>
+      </article></div>
+
+      <div class="reveal"><article class="card demo">
+        <video controls preload="none" playsinline poster="demos/asbestos-uk-teams.png">
+          <source src="demos/asbestos-uk-teams.mp4" type="video/mp4">
+        </video>
+        <div class="demo-body">
+          <h3>Multi-Tenant AI Platform</h3>
+          <p>A new city is a config, not a codebase. Large-file OCR path so oversized surveys never fail.</p>
+          <div class="pills"><span>Next.js</span><span>OpenAI GPT-4o</span><span>Google Gemini</span><span>Vercel Blob</span><span>Search Console</span></div>
         </div>
       </article></div>
 
