@@ -51,6 +51,34 @@
    ]
   },
   {
+   "title": "AI Voice Sales Agent",
+   "tag": "Voice AI",
+   "p1": "An AI voice sales rep that answers advertising leads for a residential cleaning company &mdash; runs the sales script, checks whether the address is in service area, quotes the job and books it into the company's own booking system, on the phone and through the website.",
+   "p2": "Five tools sit behind the conversation. Coverage is a straight-line radius from the depot zip, with 20 and 33 mile bands deciding whether she quotes, captures a lead or declines. Quotes are priced live against the booking platform mid-call across an 18-field payload, and bookings are written for real. The platform has no public API, so authentication runs as a session-cookie login refreshed per call, and a failed email never kills a live call.",
+   "figures": [
+    [
+     "5",
+     "tools behind the call"
+    ],
+    [
+     "18",
+     "custom fields mapped"
+    ],
+    [
+     "20/33",
+     "mile bands"
+    ]
+   ],
+   "pills": [
+    "Vapi",
+    "Twilio",
+    "n8n",
+    "Booking platform API",
+    "WebRTC",
+    "Python"
+   ]
+  },
+  {
    "title": "AI Voice Scheduling Agent",
    "tag": "Voice AI",
    "p1": "A voice agent wired into Google Calendar for conversational appointment scheduling, removing the back-and-forth of manual calendar coordination.",
@@ -506,7 +534,7 @@
  "stats": [
   [
    "Projects shipped end to end",
-   "15"
+   "16"
   ],
   [
    "Production systems in live use",
